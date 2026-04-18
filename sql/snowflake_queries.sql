@@ -1,0 +1,71 @@
+-- ==============================================================================
+-- FleetLogix Analytical Queries - Snowflake Cloud Edition
+-- Target Schema: ANALYTICS (Star Schema)
+-- ==============================================================================
+
+USE DATABASE FLEETLOGIX_DW;
+USE SCHEMA ANALYTICS;
+
+-- 1. High-Level KPI: Monthly Delivery Performance
+-- Measures volume, on-time delivery rate, and damage rate.
+SELECT 
+    LEFT(DATE_KEY, 6) as MONTH_KEY,
+    COUNT(*) as TOTAL_DELIVERIES,
+    ROUND(100.0 * COUNT(CASE WHEN IS_ON_TIME = TRUE THEN 1 END) / COUNT(*), 2) as SLA_COMPLIANCE_PCT,
+    ROUND(100.0 * COUNT(CASE WHEN IS_DAMAGED = TRUE THEN 1 END) / COUNT(*), 2) as DAMAGE_RATE_PCT,
+    SUM(DISTANCE_KM) as TOTAL_KM_TRAVELED
+FROM FACT_DELIVERIES
+GROUP BY MONTH_KEY
+ORDER BY MONTH_KEY DESC;
+
+-- 2. Performance Scorecard: Drivers vs Yield
+-- Which drivers are moving the most weight with the best efficiency?
+SELECT 
+    d.FULL_NAME,
+    COUNT(f.DELIVERY_ID) as TOTAL_DELIVERIES,
+    ROUND(AVG(f.PACKAGE_WEIGHT_KG), 2) as AVG_PACKAGE_WEIGHT,
+    ROUND(AVG(f.FUEL_EFFICIENCY_KM_PER_L), 2) as AVG_KM_PER_LITRE,
+    ROUND(SUM(f.DISTANCE_KM), 0) as TOTAL_DISTANCE
+FROM FACT_DELIVERIES f
+JOIN DIM_DRIVER d ON f.DRIVER_KEY = d.DRIVER_KEY
+GROUP BY d.FULL_NAME
+HAVING COUNT(f.DELIVERY_ID) > 100
+ORDER BY AVG_KM_PER_LITRE DESC
+LIMIT 15;
+
+-- 3. Vehicle Efficiency by Type
+-- Strategic fleet analysis.
+SELECT 
+    v.VEHICLE_TYPE,
+    COUNT(f.DELIVERY_ID) as TOTAL_DELIVERIES,
+    ROUND(SUM(f.FUEL_CONSUMED_LITERS), 2) as TOTAL_FUEL_LITERS,
+    ROUND(SUM(f.DISTANCE_KM) / NULLIF(SUM(f.FUEL_CONSUMED_LITERS), 0), 2) as AGGREGATE_EFFICIENCY,
+    ROUND(AVG(f.DELAY_MINUTES), 2) as AVG_DELAY_MINS
+FROM FACT_DELIVERIES f
+JOIN DIM_VEHICLE v ON f.VEHICLE_KEY = v.VEHICLE_KEY
+GROUP BY v.VEHICLE_TYPE
+ORDER BY AGGREGATE_EFFICIENCY DESC;
+
+-- 4. Customer Segmentation by Volume and Geography
+-- CRM insights.
+SELECT 
+    c.CUSTOMER_NAME,
+    c.CITY,
+    c.CUSTOMER_CATEGORY,
+    COUNT(f.DELIVERY_ID) as LIFETIME_DELIVERIES,
+    RANK() OVER (PARTITION BY c.CUSTOMER_CATEGORY ORDER BY COUNT(f.DELIVERY_ID) DESC) as RANK_IN_CATEGORY
+FROM FACT_DELIVERIES f
+JOIN DIM_CUSTOMER c ON f.CUSTOMER_KEY = c.CUSTOMER_KEY
+GROUP BY c.CUSTOMER_NAME, c.CITY, c.CUSTOMER_CATEGORY
+ORDER BY LIFETIME_DELIVERIES DESC
+LIMIT 20;
+
+-- 5. Peak Hour Analysis for Resource Allocation
+-- Operational optimization.
+SELECT 
+    scheduled_time_key / 3600 as HOUR_OF_DAY,
+    COUNT(*) as DELIVERY_VOLUME,
+    ROUND(AVG(DELAY_MINUTES), 2) as AVG_DELAY
+FROM FACT_DELIVERIES
+GROUP BY HOUR_OF_DAY
+ORDER BY HOUR_OF_DAY;

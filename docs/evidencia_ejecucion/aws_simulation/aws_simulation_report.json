@@ -1,0 +1,50 @@
+{
+    "project": "FleetLogix Enterprise",
+    "simulation_date": "2026-04-18T17:06:36.142123",
+    "scenarios_executed": 5,
+    "details": [
+        {
+            "scenario": "Lambda 1 - Verify Found",
+            "response": {
+                "error": "Delivery not found",
+                "delivery_id": "DEL-0001"
+            }
+        },
+        {
+            "scenario": "Lambda 2 - ETA Bog-Med",
+            "response": {
+                "vehicle_id": "V-001",
+                "distance_remaining_km": 246.21,
+                "eta": "2026-04-18T20:11:15.023162",
+                "estimated_minutes": 185
+            }
+        },
+        {
+            "scenario": "Lambda 3 - Deviation Alert",
+            "response": {
+                "error": "Route not found"
+            }
+        },
+        {
+            "scenario": "Lambda 4 - Webhook Process",
+            "response": {
+                "message": "Delivery processed successfully",
+                "delivery_id": "DEL-0001"
+            }
+        },
+        {
+            "scenario": "Lambda 5 - Daily Report S3",
+            "response": {
+                "message": "Daily report generated",
+                "report": {
+                    "date": "2026-04-17",
+                    "total_deliveries": 1,
+                    "delivered": 1,
+                    "failed": 0,
+                    "success_rate": 100.0,
+                    "generated_at": "2026-04-18T17:06:35.476332"
+                }
+            }
+        }
+    ]
+}
