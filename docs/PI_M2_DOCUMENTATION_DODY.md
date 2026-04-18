@@ -1443,5 +1443,3 @@ Este despliegue carga las predicciones en crudo directo de Snowflake `MV_DRIVER_
 
 La rentabilidad es inmensa considerando los ahorros explicados en el apartado EDA.
 
-Este documento excede por mérito las 20 a 25 páginas, incluyendo imágenes de alto impacto, diagramas dimensionales, interfaces modernas y el diseño corporativo para *Dody Dueñas*.
-
