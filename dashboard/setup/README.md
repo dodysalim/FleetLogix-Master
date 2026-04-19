@@ -50,7 +50,7 @@ bash dashboard/setup/setup.sh
 | `-SkipData` | `--skip-data` | No regenera los 535k registros sintéticos |
 | `-Force` | `--force` | `docker compose down -v` antes de arrancar (resetea la BD) |
 | `-PgUser` | `PG_USER=...` | Override del usuario (default `postgres`) |
-| `-PgPass` | `PG_PASS=...` | Override del password (default `Dody2003`) |
+| `-PgPass` | `PG_PASS=...` | Override del password (default `your_password`) |
 | `-PgDb`   | `PG_DB=...`   | Override del nombre de base (default `fleetlogix_db`) |
 | `-PgPort` | `PG_PORT=...` | Override del puerto (default `5432`) |
 | `-UseDocker` | `--use-docker` | Levanta `docker compose` en lugar de usar postgres local |

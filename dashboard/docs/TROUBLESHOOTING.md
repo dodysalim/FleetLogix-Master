@@ -52,7 +52,7 @@ Compendio de problemas frecuentes y sus soluciones, en orden de aparición típi
   DB_HOST=localhost
   DB_PORT=5432
   DB_USER=postgres
-  DB_PASSWORD=Dody2003
+  DB_PASSWORD=your_password
   DB_NAME=fleetlogix_db
   ```
 - **Fix (Docker):** ver `docker-compose.yml`:

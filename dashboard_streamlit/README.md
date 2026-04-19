@@ -40,7 +40,7 @@ La app lee credenciales del archivo `.env` **raíz del proyecto** (ya existe):
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
-DB_PASSWORD=Dody2003
+DB_PASSWORD=your_password
 DB_NAME=fleetlogix_db
 ```
 
@@ -51,7 +51,7 @@ Si prefieres, puedes crear `dashboard_streamlit/.streamlit/secrets.toml`:
 host     = "localhost"
 port     = "5432"
 user     = "postgres"
-password = "Dody2003"
+password = "your_password"
 dbname   = "fleetlogix_db"
 ```
 

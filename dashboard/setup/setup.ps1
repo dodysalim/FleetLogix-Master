@@ -16,7 +16,7 @@
 #   Puerto   : 5432
 #   Base     : fleetlogix_db
 #   Usuario  : postgres
-#   Password : Dody2003   (usa $env:PGPASSWORD para override)
+#   Password : your_password   (usa $env:PGPASSWORD para override)
 #
 # USO:
 #   cd C:\Users\DODY DUEÑAS\Documents\Poryecto2Henry\Proyecto2Dody
@@ -30,7 +30,7 @@ param(
     [string]$PgHost     = "localhost",
     [int]   $PgPort     = 5432,
     [string]$PgUser     = "postgres",
-    [string]$PgPass     = "Dody2003",
+    [string]$PgPass     = "your_password",
     [string]$PgDb       = "fleetlogix_db"
 )
 
@@ -40,7 +40,7 @@ $ProjectRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 # -- Override credenciales si va con Docker (compose usa otro user/db) --
 if ($UseDocker) {
     if ($PgUser -eq "postgres") { $PgUser = "admin_dody" }
-    if ($PgPass -eq "Dody2003") { $PgPass = "secret_password_123" }
+    if ($PgPass -eq "your_password") { $PgPass = "secret_password_123" }
     if ($PgDb   -eq "fleetlogix_db") { $PgDb = "fleetlogix" }
 }
 

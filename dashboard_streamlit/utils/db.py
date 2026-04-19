@@ -34,7 +34,7 @@ def _get_cfg() -> dict:
         "host":     secrets.get("host",     os.getenv("DB_HOST", "localhost")),
         "port":     secrets.get("port",     os.getenv("DB_PORT", "5432")),
         "user":     secrets.get("user",     os.getenv("DB_USER", "postgres")),
-        "password": secrets.get("password", os.getenv("DB_PASSWORD", "Dody2003")),
+        "password": secrets.get("password", os.getenv("DB_PASSWORD", "")),
         "dbname":   secrets.get("dbname",   os.getenv("DB_NAME", "fleetlogix_db")),
     }
 

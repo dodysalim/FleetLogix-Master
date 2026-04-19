@@ -32,7 +32,7 @@ DSN = dict(
     host     = os.getenv("PG_HOST", "localhost"),
     port     = int(os.getenv("PG_PORT", 5432)),
     user     = os.getenv("PG_USER", "postgres"),
-    password = os.getenv("PG_PASS", "Dody2003"),
+    password = os.getenv("PG_PASS", "your_password"),
     dbname   = os.getenv("PG_DB",   "fleetlogix_db"),
 )
 
@@ -81,7 +81,7 @@ def main() -> int:
         print("\n  Verifica:")
         print("  • PostgreSQL está corriendo (services.msc → postgresql-x64-*)")
         print("  • La base 'fleetlogix_db' existe (créala desde pgAdmin si no)")
-        print("  • Las credenciales son correctas (postgres / Dody2003)")
+        print("  • Las credenciales son correctas (postgres / your_password)")
         return 2
 
     conn.autocommit = True

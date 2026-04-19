@@ -279,7 +279,7 @@ Host: localhost
 Port: 5432
 Database: fleetlogix_db
 Username: postgres
-Password: Dody2003
+Password: your_password
 ```
 
 ### Paso 3: Ejecutar cada query y tomar captura

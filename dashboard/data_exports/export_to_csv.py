@@ -34,7 +34,7 @@ DEFAULT_DSN = {
     "port":     int(os.getenv("PG_PORT", 5432)),
     "dbname":   os.getenv("PG_DB",       "fleetlogix_db"),
     "user":     os.getenv("PG_USER",     "postgres"),
-    "password": os.getenv("PG_PASS",     "Dody2003"),
+    "password": os.getenv("PG_PASS",     "your_password"),
 }
 
 VIEWS = [

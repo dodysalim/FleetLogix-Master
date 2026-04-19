@@ -10,7 +10,7 @@ DSN = dict(
     host="localhost",
     port=5432,
     user="postgres",
-    password="Dody2003",
+    password="your_password",
     dbname="fleetlogix_db",
 )
 

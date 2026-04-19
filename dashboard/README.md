@@ -97,7 +97,7 @@ Ver `MODELO_DATOS.md` y `KPIs.md` para el detalle de columnas y fórmulas.
 
 | Entorno | Usuario | Password | DB |
 |---------|---------|----------|----|
-| PostgreSQL local | `postgres` | `Dody2003` | `fleetlogix_db` |
+| PostgreSQL local | `postgres` | `your_password` | `fleetlogix_db` |
 | Docker compose | `admin_dody` | `secret_password_123` | `fleetlogix` |
 
 Ajustar en `.env` de la raíz del proyecto.

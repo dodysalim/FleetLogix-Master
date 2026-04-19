@@ -17,7 +17,7 @@
 #   Puerto   : 5432
 #   Base     : fleetlogix_db
 #   Usuario  : postgres
-#   Password : Dody2003
+#   Password : your_password
 #
 # USO:
 #   bash dashboard/setup/setup.sh                # local Postgres (default)
@@ -34,7 +34,7 @@ USE_DOCKER=0
 PG_HOST="${PG_HOST:-localhost}"
 PG_PORT="${PG_PORT:-5432}"
 PG_USER="${PG_USER:-postgres}"
-PG_PASS="${PG_PASS:-Dody2003}"
+PG_PASS="${PG_PASS:-your_password}"
 PG_DB="${PG_DB:-fleetlogix_db}"
 
 for arg in "$@"; do
@@ -49,7 +49,7 @@ done
 # Si va con docker, sobrescribir credenciales para que coincidan con compose
 if [[ "$USE_DOCKER" -eq 1 ]]; then
     [[ "$PG_USER" == "postgres" ]]      && PG_USER="admin_dody"
-    [[ "$PG_PASS" == "Dody2003" ]]      && PG_PASS="secret_password_123"
+    [[ "$PG_PASS" == "your_password" ]]      && PG_PASS="secret_password_123"
     [[ "$PG_DB"   == "fleetlogix_db" ]] && PG_DB="fleetlogix"
 fi
 
