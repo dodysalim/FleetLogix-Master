@@ -191,7 +191,7 @@
 ## 📞 Soporte y Contacto
 
 **Autor:** Dody Dueñas  
-📧 Email: dody.duenas@example.com  
+📧 Contacto: Vía GitHub o LinkedIn  
 🔗 [LinkedIn](https://linkedin.com/in/dodyduenas)  
 🐙 [GitHub](https://github.com/dodyduenas)
 
