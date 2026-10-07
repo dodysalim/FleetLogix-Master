@@ -1,3 +1,25 @@
+# FleetLogix · Analítica logística
+
+Proyecto académico Henry M2 con datos sintéticos. Generación por entidades, ETL y consultas analíticas.
+
+**Para revisar:** `app/generators, app/core, dashboard/sql`.
+
+**Contexto:** Los componentes AWS descritos como simulación no implican una infraestructura empresarial en operación.
+
+## Inicio
+
+Desde la raíz del repositorio, en un entorno virtual con sus datos disponibles:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Consulta [el caso de proyecto](docs/PORTFOLIO_CASE.md) para el alcance y los criterios de revisión.
+
+---
+
+## Documentación detallada existente
+
 # 🚛 FleetLogix Master
 ### Plataforma Empresarial de Ciencia de Datos para Optimización Logística
 
