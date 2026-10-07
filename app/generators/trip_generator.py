@@ -10,9 +10,9 @@ class TripGenerator(IDataGenerator):
     Generator for trips with temporal distribution logic.
     """
     def __init__(self, seed: int = 42):
+        self._rng = random.Random(seed)
+        self._np_rng = np.random.default_rng(seed)
         self._seed = seed
-        random.seed(seed)
-        np.random.seed(seed)
 
     def _get_hourly_distribution(self):
         probs = np.ones(24) * 0.02
@@ -34,18 +34,18 @@ class TripGenerator(IDataGenerator):
         current_date = start_date
         
         for i in range(count):
-            vehicle_id, capacity = random.choice(vehicle_ids)
-            driver_id = random.choice(driver_ids)
-            route_id, distance, est_duration = random.choice(routes)
+            vehicle_id, capacity = self._rng.choice(vehicle_ids)
+            driver_id = self._rng.choice(driver_ids)
+            route_id, distance, est_duration = self._rng.choice(routes)
             
-            hour = np.random.choice(range(24), p=self._get_hourly_distribution())
-            departure = current_date.replace(hour=hour, minute=random.randint(0, 59))
+            hour = self._np_rng.choice(range(24), p=self._get_hourly_distribution())
+            departure = current_date.replace(hour=hour, minute=self._rng.randint(0, 59))
             
-            actual_duration = float(est_duration) * random.uniform(0.8, 1.3)
+            actual_duration = float(est_duration) * self._rng.uniform(0.8, 1.3)
             arrival = departure + timedelta(hours=actual_duration)
             
-            fuel_consumed = float(distance) * random.uniform(0.08, 0.15)
-            total_weight = float(capacity) * random.uniform(0.4, 0.9)
+            fuel_consumed = float(distance) * self._rng.uniform(0.08, 0.15)
+            total_weight = float(capacity) * self._rng.uniform(0.4, 0.9)
             
             status = 'completed' if arrival < datetime.now() else 'in_progress'
             

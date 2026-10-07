@@ -9,9 +9,9 @@ class MaintenanceGenerator(IDataGenerator):
     Generator for maintenance records.
     """
     def __init__(self, seed: int = 42):
+        self._rng = random.Random(seed)
         self._fake = Faker('es_CO')
         self._fake.seed_instance(seed)
-        random.seed(seed)
         self._maintenance_types = [
             ('Cambio de aceite', 150000, 30),
             ('Revisión de frenos', 250000, 60),
@@ -40,8 +40,8 @@ class MaintenanceGenerator(IDataGenerator):
                     days_offset = int(operation_days * (i + 1) / (num_maintenance + 1))
                     maint_date = (first_trip + timedelta(days=days_offset)).date()
                     
-                    m_type, base_cost, days_next = random.choice(self._maintenance_types)
-                    cost = base_cost * random.uniform(0.8, 1.2)
+                    m_type, base_cost, days_next = self._rng.choice(self._maintenance_types)
+                    cost = base_cost * self._rng.uniform(0.8, 1.2)
                     
                     maintenance_records.append((
                         vehicle_id,

@@ -7,8 +7,8 @@ class RouteGenerator(IDataGenerator):
     Generator for route data using consistent distance matrix.
     """
     def __init__(self, seed: int = 42):
+        self._rng = random.Random(seed)
         self._cities = ['Bogotá', 'Medellín', 'Cali', 'Barranquilla', 'Cartagena']
-        random.seed(seed)
         self._distances = {
             ('Bogotá', 'Medellín'): 440,
             ('Bogotá', 'Cali'): 460,
@@ -33,8 +33,8 @@ class RouteGenerator(IDataGenerator):
             for destination in self._cities:
                 if origin != destination:
                     route_code = f"R{str(route_counter).zfill(3)}"
-                    distance = self._get_distance(origin, destination) + random.uniform(-50, 50)
-                    avg_speed = random.uniform(60, 80)
+                    distance = self._get_distance(origin, destination) + self._rng.uniform(-50, 50)
+                    avg_speed = self._rng.uniform(60, 80)
                     duration = distance / avg_speed
                     toll_cost = int(distance / 100) * 15000
                     

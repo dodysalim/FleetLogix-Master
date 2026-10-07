@@ -9,6 +9,7 @@ class VehicleGenerator(IDataGenerator):
     Follows Strategy Pattern.
     """
     def __init__(self, seed: int = 42):
+        self._rng = random.Random(seed)
         self._fake = Faker('es_CO')
         self._fake.seed_instance(seed)
         self._vehicle_types = [
@@ -21,13 +22,13 @@ class VehicleGenerator(IDataGenerator):
     def generate(self, count: int, **kwargs) -> List[tuple]:
         vehicles = []
         for _ in range(count):
-            v_type, capacity, fuel = random.choice(self._vehicle_types)
+            v_type, capacity, fuel = self._rng.choice(self._vehicle_types)
             
             # Colombian Plate (ABC123)
-            plate = f"{self._fake.random_uppercase_letter()}{self._fake.random_uppercase_letter()}{self._fake.random_uppercase_letter()}{random.randint(100,999)}"
+            plate = f"{self._fake.random_uppercase_letter()}{self._fake.random_uppercase_letter()}{self._fake.random_uppercase_letter()}{self._rng.randint(100,999)}"
             
             acquisition_date = self._fake.date_between(start_date="-5y", end_date="-1m")
-            status = random.choice(['active'] * 9 + ['maintenance'])
+            status = self._rng.choice(['active'] * 9 + ['maintenance'])
             
             vehicles.append((
                 plate,

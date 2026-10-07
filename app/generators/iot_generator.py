@@ -9,7 +9,7 @@ class IoTGenerator:
     Saves to JSON for MongoDB ingestion.
     """
     def __init__(self, seed: int = 42):
-        random.seed(seed)
+        self._rng = random.Random(seed)
         self.iot_events = ['frenada_brusca', 'exceso_velocidad', 'operacion_normal', 'ralenti_prolongado']
 
     def generate(self, count: int = 10000, vehicle_ids: List[int] = []) -> List[dict]:
@@ -23,15 +23,15 @@ class IoTGenerator:
         start_time = datetime.now() - timedelta(days=30)
         
         for i in range(count):
-            v_id = random.choice(vehicle_ids)
-            timestamp = start_time + timedelta(minutes=random.randint(0, 43200)) # Last 30 days
+            v_id = self._rng.choice(vehicle_ids)
+            timestamp = start_time + timedelta(minutes=self._rng.randint(0, 43200)) # Last 30 days
             
             # Simulated GPS for Colombia (approx)
-            lat = random.uniform(4.0, 6.0)
-            lon = random.uniform(-75.0, -73.0)
+            lat = self._rng.uniform(4.0, 6.0)
+            lon = self._rng.uniform(-75.0, -73.0)
             
             event = {
-                "sensor_id": f"SN-{random.randint(1000, 9999)}",
+                "sensor_id": f"SN-{self._rng.randint(1000, 9999)}",
                 "vehicle_id": v_id,
                 "timestamp": timestamp.isoformat(),
                 "location": {
@@ -39,12 +39,12 @@ class IoTGenerator:
                     "coordinates": [round(lon, 6), round(lat, 6)]
                 },
                 "metrics": {
-                    "speed_kmh": round(random.uniform(0, 110), 2),
-                    "fuel_level_pct": round(random.uniform(10, 100), 2),
-                    "engine_temp_c": round(random.uniform(70, 105), 2),
-                    "load_weight_kg": round(random.uniform(0, 5000), 2)
+                    "speed_kmh": round(self._rng.uniform(0, 110), 2),
+                    "fuel_level_pct": round(self._rng.uniform(10, 100), 2),
+                    "engine_temp_c": round(self._rng.uniform(70, 105), 2),
+                    "load_weight_kg": round(self._rng.uniform(0, 5000), 2)
                 },
-                "event_type": random.choices(self.iot_events, weights=[0.05, 0.1, 0.8, 0.05])[0]
+                "event_type": self._rng.choices(self.iot_events, weights=[0.05, 0.1, 0.8, 0.05])[0]
             }
             telemetry_data.append(event)
             

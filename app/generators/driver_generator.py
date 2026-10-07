@@ -8,6 +8,7 @@ class DriverGenerator(IDataGenerator):
     Generator for driver data with performance metrics and SCD implementation.
     """
     def __init__(self, seed: int = 42):
+        self._rng = random.Random(seed)
         self._fake = Faker('es_CO')
         self._fake.seed_instance(seed)
         self._license_types = ['C1', 'C2', 'C3', 'A2']
@@ -20,13 +21,13 @@ class DriverGenerator(IDataGenerator):
             employee_code = f"EMP{str(i+1).zfill(4)}"
             
             while True:
-                license_num = f"{random.randint(1000000000, 9999999999)}"
+                license_num = f"{self._rng.randint(1000000000, 9999999999)}"
                 if license_num not in self._used_license_numbers:
                     self._used_license_numbers.add(license_num)
                     break
             
             hire_date = self._fake.date_between(start_date="-5y", end_date="-1w")
-            phone = f"3{random.randint(100000000, 999999999)}"
+            phone = f"3{self._rng.randint(100000000, 999999999)}"
             
             drivers.append((
                 employee_code,
