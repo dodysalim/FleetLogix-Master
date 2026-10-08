@@ -1,0 +1,62 @@
+table Rutas
+
+	column 'route_label'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: route_label
+
+	column 'origin_city'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: origin_city
+
+	column 'destination_city'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: destination_city
+
+	column 'distance_km'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: distance_km
+
+	column 'trip_count'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: trip_count
+
+	column 'total_fuel_liters'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: total_fuel_liters
+
+	column 'fuel_efficiency_l_per_100km'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: fuel_efficiency_l_per_100km
+
+	measure KPI_distance_km = SUM(Rutas[distance_km])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_trip_count = SUM(Rutas[trip_count])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_total_fuel_liters = SUM(Rutas[total_fuel_liters])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_fuel_efficiency_l_per_100km = AVERAGE(Rutas[fuel_efficiency_l_per_100km])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	partition Rutas = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Rutas.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"route_label", type text}, {"origin_city", type text}, {"destination_city", type text}, {"distance_km", type number}, {"trip_count", type number}, {"total_fuel_liters", type number}, {"fuel_efficiency_l_per_100km", type number}}, "en-US")
+				in
+				    Typed

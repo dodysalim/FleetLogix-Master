@@ -1,0 +1,297 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "table10",
+  "position": {
+    "x": 30,
+    "y": 570,
+    "z": 11,
+    "height": 260,
+    "width": 1220,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "vehicle_id"
+                }
+              },
+              "queryRef": "Flota.vehicle_id",
+              "nativeQueryRef": "vehicle_id",
+              "displayName": "vehicle_id",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "vehicle_type"
+                }
+              },
+              "queryRef": "Flota.vehicle_type",
+              "nativeQueryRef": "vehicle_type",
+              "displayName": "vehicle_type",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "vehicle_status"
+                }
+              },
+              "queryRef": "Flota.vehicle_status",
+              "nativeQueryRef": "vehicle_status",
+              "displayName": "vehicle_status",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "fuel_type"
+                }
+              },
+              "queryRef": "Flota.fuel_type",
+              "nativeQueryRef": "fuel_type",
+              "displayName": "fuel_type",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "total_trips"
+                }
+              },
+              "queryRef": "Flota.total_trips",
+              "nativeQueryRef": "total_trips",
+              "displayName": "total_trips",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "completed_trips"
+                }
+              },
+              "queryRef": "Flota.completed_trips",
+              "nativeQueryRef": "completed_trips",
+              "displayName": "completed_trips",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "total_fuel_liters"
+                }
+              },
+              "queryRef": "Flota.total_fuel_liters",
+              "nativeQueryRef": "total_fuel_liters",
+              "displayName": "total_fuel_liters",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "avg_capacity_utilization_pct"
+                }
+              },
+              "queryRef": "Flota.avg_capacity_utilization_pct",
+              "nativeQueryRef": "avg_capacity_utilization_pct",
+              "displayName": "avg_capacity_utilization_pct",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flota"
+                    }
+                  },
+                  "Property": "fuel_efficiency_l_per_100km"
+                }
+              },
+              "queryRef": "Flota.fuel_efficiency_l_per_100km",
+              "nativeQueryRef": "fuel_efficiency_l_per_100km",
+              "displayName": "fuel_efficiency_l_per_100km",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalle de la vista v_vehicle_performance'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#183047'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E1E8F0'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

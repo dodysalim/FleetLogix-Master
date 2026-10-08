@@ -1,0 +1,13 @@
+{
+  "repo": "FleetLogix-Master",
+  "pages": 5,
+  "visuals": 55,
+  "tables": {
+    "Resumen": 0,
+    "Flota": 0,
+    "Conductores": 0,
+    "Rutas": 0,
+    "Combustible": 0
+  },
+  "status": "PENDIENTE DE DATOS · exporta las vistas PostgreSQL originales · no se inventan viajes ni KPIs"
+}

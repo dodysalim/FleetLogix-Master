@@ -1,0 +1,66 @@
+table Conductores
+
+	column 'employee_code'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: employee_code
+
+	column 'driver_status'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: driver_status
+
+	column 'total_trips'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: total_trips
+
+	column 'completed_trips'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: completed_trips
+
+	column 'total_deliveries'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: total_deliveries
+
+	column 'successful_deliveries'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: successful_deliveries
+
+	column 'success_rate_pct'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: success_rate_pct
+
+	measure KPI_total_trips = SUM(Conductores[total_trips])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_completed_trips = SUM(Conductores[completed_trips])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_total_deliveries = SUM(Conductores[total_deliveries])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_successful_deliveries = SUM(Conductores[successful_deliveries])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_success_rate_pct = AVERAGE(Conductores[success_rate_pct])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	partition Conductores = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Conductores.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"employee_code", type text}, {"driver_status", type text}, {"total_trips", type number}, {"completed_trips", type number}, {"total_deliveries", type number}, {"successful_deliveries", type number}, {"success_rate_pct", type number}}, "en-US")
+				in
+				    Typed

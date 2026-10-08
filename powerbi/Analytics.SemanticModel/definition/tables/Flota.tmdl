@@ -1,0 +1,76 @@
+table Flota
+
+	column 'vehicle_id'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: vehicle_id
+
+	column 'vehicle_type'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: vehicle_type
+
+	column 'vehicle_status'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: vehicle_status
+
+	column 'fuel_type'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: fuel_type
+
+	column 'total_trips'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: total_trips
+
+	column 'completed_trips'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: completed_trips
+
+	column 'total_fuel_liters'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: total_fuel_liters
+
+	column 'avg_capacity_utilization_pct'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: avg_capacity_utilization_pct
+
+	column 'fuel_efficiency_l_per_100km'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: fuel_efficiency_l_per_100km
+
+	measure KPI_total_trips = SUM(Flota[total_trips])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_completed_trips = SUM(Flota[completed_trips])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_total_fuel_liters = SUM(Flota[total_fuel_liters])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_avg_capacity_utilization_pct = AVERAGE(Flota[avg_capacity_utilization_pct])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_fuel_efficiency_l_per_100km = AVERAGE(Flota[fuel_efficiency_l_per_100km])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	partition Flota = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Flota.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"vehicle_id", type text}, {"vehicle_type", type text}, {"vehicle_status", type text}, {"fuel_type", type text}, {"total_trips", type number}, {"completed_trips", type number}, {"total_fuel_liters", type number}, {"avg_capacity_utilization_pct", type number}, {"fuel_efficiency_l_per_100km", type number}}, "en-US")
+				in
+				    Typed

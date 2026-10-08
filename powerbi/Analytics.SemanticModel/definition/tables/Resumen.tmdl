@@ -1,0 +1,52 @@
+table Resumen
+
+	column 'fecha'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: fecha
+
+	column 'total_deliveries'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: total_deliveries
+
+	column 'delivered'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: delivered
+
+	column 'pending'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: pending
+
+	column 'failed'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: failed
+
+	measure KPI_total_deliveries = SUM(Resumen[total_deliveries])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_delivered = SUM(Resumen[delivered])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_pending = SUM(Resumen[pending])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	measure KPI_failed = SUM(Resumen[failed])
+		formatString: #,0.00
+		displayFolder: Indicadores
+
+	partition Resumen = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Resumen.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"fecha", type text}, {"total_deliveries", type number}, {"delivered", type number}, {"pending", type number}, {"failed", type number}}, "en-US")
+				in
+				    Typed

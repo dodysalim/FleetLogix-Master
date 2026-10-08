@@ -1,0 +1,265 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "table10",
+  "position": {
+    "x": 30,
+    "y": 570,
+    "z": 11,
+    "height": 260,
+    "width": 1220,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Conductores"
+                    }
+                  },
+                  "Property": "employee_code"
+                }
+              },
+              "queryRef": "Conductores.employee_code",
+              "nativeQueryRef": "employee_code",
+              "displayName": "employee_code",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Conductores"
+                    }
+                  },
+                  "Property": "driver_status"
+                }
+              },
+              "queryRef": "Conductores.driver_status",
+              "nativeQueryRef": "driver_status",
+              "displayName": "driver_status",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Conductores"
+                    }
+                  },
+                  "Property": "total_trips"
+                }
+              },
+              "queryRef": "Conductores.total_trips",
+              "nativeQueryRef": "total_trips",
+              "displayName": "total_trips",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Conductores"
+                    }
+                  },
+                  "Property": "completed_trips"
+                }
+              },
+              "queryRef": "Conductores.completed_trips",
+              "nativeQueryRef": "completed_trips",
+              "displayName": "completed_trips",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Conductores"
+                    }
+                  },
+                  "Property": "total_deliveries"
+                }
+              },
+              "queryRef": "Conductores.total_deliveries",
+              "nativeQueryRef": "total_deliveries",
+              "displayName": "total_deliveries",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Conductores"
+                    }
+                  },
+                  "Property": "successful_deliveries"
+                }
+              },
+              "queryRef": "Conductores.successful_deliveries",
+              "nativeQueryRef": "successful_deliveries",
+              "displayName": "successful_deliveries",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Conductores"
+                    }
+                  },
+                  "Property": "success_rate_pct"
+                }
+              },
+              "queryRef": "Conductores.success_rate_pct",
+              "nativeQueryRef": "success_rate_pct",
+              "displayName": "success_rate_pct",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalle de la vista v_driver_performance'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#183047'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E1E8F0'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
