@@ -12,7 +12,7 @@ import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
-from sqlalchemy.engine import Engine
+from sqlalchemy.engine import Engine, URL
 
 
 # -----------------------------------------------------------------------------
@@ -43,11 +43,13 @@ def _get_cfg() -> dict:
 def get_engine() -> Engine:
     """Engine SQLAlchemy cacheado. Una sola conexión pool para toda la app."""
     cfg = _get_cfg()
-    url = (
-        f"postgresql+psycopg2://{cfg['user']}:{cfg['password']}"
-        f"@{cfg['host']}:{cfg['port']}/{cfg['dbname']}"
+    url = URL.create(
+        "postgresql+psycopg2", username=cfg["user"], password=cfg["password"],
+        host=cfg["host"], port=int(cfg["port"]), database=cfg["dbname"],
     )
-    return create_engine(url, pool_pre_ping=True, pool_recycle=1800)
+    return create_engine(url, pool_pre_ping=True, pool_recycle=1800,
+                         connect_args={"connect_timeout": 5})
+
 
 
 # -----------------------------------------------------------------------------
