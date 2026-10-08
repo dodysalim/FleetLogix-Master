@@ -3,9 +3,9 @@
   "name": "chart8",
   "position": {
     "x": 30,
-    "y": 270,
+    "y": 308,
     "z": 9,
-    "height": 280,
+    "height": 325,
     "width": 600,
     "tabOrder": 9
   },
@@ -43,10 +43,10 @@
                       "Entity": "Flota"
                     }
                   },
-                  "Property": "KPI_total_trips"
+                  "Property": "KPI_total_trips_Flota"
                 }
               },
-              "queryRef": "Flota.KPI_total_trips",
+              "queryRef": "Flota.KPI_total_trips_Flota",
               "nativeQueryRef": "KPI_total_trips",
               "displayName": "KPI_total_trips",
               "active": true

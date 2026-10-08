@@ -39,17 +39,29 @@ table Rutas
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_trip_count = SUM(Rutas[trip_count])
+	measure KPI_trip_count_Rutas = SUM(Rutas[trip_count])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_total_fuel_liters = SUM(Rutas[total_fuel_liters])
+	measure KPI_total_fuel_liters_Rutas = SUM(Rutas[total_fuel_liters])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_fuel_efficiency_l_per_100km = AVERAGE(Rutas[fuel_efficiency_l_per_100km])
+	measure KPI_fuel_efficiency_l_per_100km_Rutas = AVERAGE(Rutas[fuel_efficiency_l_per_100km])
 		formatString: #,0.00
 		displayFolder: Indicadores
+
+	measure KPI_total_fuel_liters_Estado_Rutas = IF(COUNTROWS(Rutas)=0, "Datos pendientes", FORMAT([KPI_total_fuel_liters_Rutas], "#,0.00"))
+		formatString: General
+
+	measure KPI_distance_km_Estado = IF(COUNTROWS(Rutas)=0, "Datos pendientes", FORMAT([KPI_distance_km], "#,0.00"))
+		formatString: General
+
+	measure KPI_fuel_efficiency_l_per_100km_Estado = IF(COUNTROWS(Rutas)=0, "Datos pendientes", FORMAT([KPI_fuel_efficiency_l_per_100km_Rutas], "#,0.00"))
+		formatString: General
+
+	measure KPI_trip_count_Estado_Rutas = IF(COUNTROWS(Rutas)=0, "Datos pendientes", FORMAT([KPI_trip_count_Rutas], "#,0.00"))
+		formatString: General
 
 	partition Rutas = m
 		mode: import

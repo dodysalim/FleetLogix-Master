@@ -35,15 +35,15 @@ table Conductores
 		summarizeBy: none
 		sourceColumn: success_rate_pct
 
-	measure KPI_total_trips = SUM(Conductores[total_trips])
+	measure KPI_total_trips_Conductores = SUM(Conductores[total_trips])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_completed_trips = SUM(Conductores[completed_trips])
+	measure KPI_completed_trips_Conductores = SUM(Conductores[completed_trips])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_total_deliveries = SUM(Conductores[total_deliveries])
+	measure KPI_total_deliveries_Conductores = SUM(Conductores[total_deliveries])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
@@ -54,6 +54,18 @@ table Conductores
 	measure KPI_success_rate_pct = AVERAGE(Conductores[success_rate_pct])
 		formatString: #,0.00
 		displayFolder: Indicadores
+
+	measure KPI_successful_deliveries_Estado = IF(COUNTROWS(Conductores)=0, "Datos pendientes", FORMAT([KPI_successful_deliveries], "#,0.00"))
+		formatString: General
+
+	measure KPI_completed_trips_Estado_Conductores = IF(COUNTROWS(Conductores)=0, "Datos pendientes", FORMAT([KPI_completed_trips_Conductores], "#,0.00"))
+		formatString: General
+
+	measure KPI_total_deliveries_Estado_Conductores = IF(COUNTROWS(Conductores)=0, "Datos pendientes", FORMAT([KPI_total_deliveries_Conductores], "#,0.00"))
+		formatString: General
+
+	measure KPI_total_trips_Estado_Conductores = IF(COUNTROWS(Conductores)=0, "Datos pendientes", FORMAT([KPI_total_trips_Conductores], "#,0.00"))
+		formatString: General
 
 	partition Conductores = m
 		mode: import

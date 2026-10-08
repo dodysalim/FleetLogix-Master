@@ -25,7 +25,7 @@ table Resumen
 		summarizeBy: none
 		sourceColumn: failed
 
-	measure KPI_total_deliveries = SUM(Resumen[total_deliveries])
+	measure KPI_total_deliveries_Resumen = SUM(Resumen[total_deliveries])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
@@ -40,6 +40,18 @@ table Resumen
 	measure KPI_failed = SUM(Resumen[failed])
 		formatString: #,0.00
 		displayFolder: Indicadores
+
+	measure KPI_failed_Estado = IF(COUNTROWS(Resumen)=0, "Datos pendientes", FORMAT([KPI_failed], "#,0.00"))
+		formatString: General
+
+	measure KPI_total_deliveries_Estado_Resumen = IF(COUNTROWS(Resumen)=0, "Datos pendientes", FORMAT([KPI_total_deliveries_Resumen], "#,0.00"))
+		formatString: General
+
+	measure KPI_delivered_Estado = IF(COUNTROWS(Resumen)=0, "Datos pendientes", FORMAT([KPI_delivered], "#,0.00"))
+		formatString: General
+
+	measure KPI_pending_Estado = IF(COUNTROWS(Resumen)=0, "Datos pendientes", FORMAT([KPI_pending], "#,0.00"))
+		formatString: General
 
 	partition Resumen = m
 		mode: import

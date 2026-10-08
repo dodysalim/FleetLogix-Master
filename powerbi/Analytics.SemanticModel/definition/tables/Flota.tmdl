@@ -45,15 +45,15 @@ table Flota
 		summarizeBy: none
 		sourceColumn: fuel_efficiency_l_per_100km
 
-	measure KPI_total_trips = SUM(Flota[total_trips])
+	measure KPI_total_trips_Flota = SUM(Flota[total_trips])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_completed_trips = SUM(Flota[completed_trips])
+	measure KPI_completed_trips_Flota = SUM(Flota[completed_trips])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_total_fuel_liters = SUM(Flota[total_fuel_liters])
+	measure KPI_total_fuel_liters_Flota = SUM(Flota[total_fuel_liters])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
@@ -61,9 +61,21 @@ table Flota
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_fuel_efficiency_l_per_100km = AVERAGE(Flota[fuel_efficiency_l_per_100km])
+	measure KPI_fuel_efficiency_l_per_100km_Flota = AVERAGE(Flota[fuel_efficiency_l_per_100km])
 		formatString: #,0.00
 		displayFolder: Indicadores
+
+	measure KPI_total_fuel_liters_Estado_Flota = IF(COUNTROWS(Flota)=0, "Datos pendientes", FORMAT([KPI_total_fuel_liters_Flota], "#,0.00"))
+		formatString: General
+
+	measure KPI_completed_trips_Estado_Flota = IF(COUNTROWS(Flota)=0, "Datos pendientes", FORMAT([KPI_completed_trips_Flota], "#,0.00"))
+		formatString: General
+
+	measure KPI_avg_capacity_utilization_pct_Estado = IF(COUNTROWS(Flota)=0, "Datos pendientes", FORMAT([KPI_avg_capacity_utilization_pct], "#,0.00"))
+		formatString: General
+
+	measure KPI_total_trips_Estado_Flota = IF(COUNTROWS(Flota)=0, "Datos pendientes", FORMAT([KPI_total_trips_Flota], "#,0.00"))
+		formatString: General
 
 	partition Flota = m
 		mode: import

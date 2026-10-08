@@ -3,9 +3,9 @@
   "name": "chart9",
   "position": {
     "x": 650,
-    "y": 270,
+    "y": 308,
     "z": 10,
-    "height": 280,
+    "height": 325,
     "width": 600,
     "tabOrder": 10
   },
@@ -43,10 +43,10 @@
                       "Entity": "Rutas"
                     }
                   },
-                  "Property": "KPI_fuel_efficiency_l_per_100km"
+                  "Property": "KPI_fuel_efficiency_l_per_100km_Rutas"
                 }
               },
-              "queryRef": "Rutas.KPI_fuel_efficiency_l_per_100km",
+              "queryRef": "Rutas.KPI_fuel_efficiency_l_per_100km_Rutas",
               "nativeQueryRef": "KPI_fuel_efficiency_l_per_100km",
               "displayName": "KPI_fuel_efficiency_l_per_100km",
               "active": true

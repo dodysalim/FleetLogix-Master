@@ -3,9 +3,9 @@
   "name": "chart9",
   "position": {
     "x": 650,
-    "y": 270,
+    "y": 308,
     "z": 10,
-    "height": 280,
+    "height": 325,
     "width": 600,
     "tabOrder": 10
   },
@@ -43,10 +43,10 @@
                       "Entity": "Flota"
                     }
                   },
-                  "Property": "KPI_fuel_efficiency_l_per_100km"
+                  "Property": "KPI_fuel_efficiency_l_per_100km_Flota"
                 }
               },
-              "queryRef": "Flota.KPI_fuel_efficiency_l_per_100km",
+              "queryRef": "Flota.KPI_fuel_efficiency_l_per_100km_Flota",
               "nativeQueryRef": "KPI_fuel_efficiency_l_per_100km",
               "displayName": "KPI_fuel_efficiency_l_per_100km",
               "active": true

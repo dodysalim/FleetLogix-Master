@@ -30,11 +30,11 @@ table Combustible
 		summarizeBy: none
 		sourceColumn: total_distance_km
 
-	measure KPI_trip_count = SUM(Combustible[trip_count])
+	measure KPI_trip_count_Combustible = SUM(Combustible[trip_count])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
-	measure KPI_total_fuel_liters = SUM(Combustible[total_fuel_liters])
+	measure KPI_total_fuel_liters_Combustible = SUM(Combustible[total_fuel_liters])
 		formatString: #,0.00
 		displayFolder: Indicadores
 
@@ -45,6 +45,18 @@ table Combustible
 	measure KPI_Eficiencia = DIVIDE(SUM(Combustible[total_fuel_liters])*100, SUM(Combustible[total_distance_km]))
 		formatString: #,0.00
 		displayFolder: Indicadores
+
+	measure KPI_total_distance_km_Estado = IF(COUNTROWS(Combustible)=0, "Datos pendientes", FORMAT([KPI_total_distance_km], "#,0.00"))
+		formatString: General
+
+	measure KPI_total_fuel_liters_Estado_Combustible = IF(COUNTROWS(Combustible)=0, "Datos pendientes", FORMAT([KPI_total_fuel_liters_Combustible], "#,0.00"))
+		formatString: General
+
+	measure KPI_Eficiencia_Estado = IF(COUNTROWS(Combustible)=0, "Datos pendientes", FORMAT([KPI_Eficiencia], "#,0.00"))
+		formatString: General
+
+	measure KPI_trip_count_Estado_Combustible = IF(COUNTROWS(Combustible)=0, "Datos pendientes", FORMAT([KPI_trip_count_Combustible], "#,0.00"))
+		formatString: General
 
 	partition Combustible = m
 		mode: import

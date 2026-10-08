@@ -3,9 +3,9 @@
   "name": "chart8",
   "position": {
     "x": 30,
-    "y": 270,
+    "y": 308,
     "z": 9,
-    "height": 280,
+    "height": 325,
     "width": 600,
     "tabOrder": 9
   },
@@ -43,10 +43,10 @@
                       "Entity": "Resumen"
                     }
                   },
-                  "Property": "KPI_total_deliveries"
+                  "Property": "KPI_total_deliveries_Resumen"
                 }
               },
-              "queryRef": "Resumen.KPI_total_deliveries",
+              "queryRef": "Resumen.KPI_total_deliveries_Resumen",
               "nativeQueryRef": "KPI_total_deliveries",
               "displayName": "KPI_total_deliveries",
               "active": true
