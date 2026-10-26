@@ -68,6 +68,19 @@ Necesita PostgreSQL y las vistas SQL. El dashboard lee DB_HOST, DB_PORT, DB_NAME
 
 [Archivos e instrucciones](powerbi/README.md). Descarga el repositorio completo y abre `powerbi/Abrir-PowerBI.bat` en Windows; después pulsa **Actualizar**. Incluye A4 horizontal a tamaño real (100 %) y diseño móvil vertical. El archivo `.pbip` necesita sus carpetas Report, SemanticModel y data.
 
+## 🏗️ Arquitectura
+
+```mermaid
+flowchart LR
+    CLI(["scripts/01_data_generation.py<br/>--scale"]) --> INT["ProjectIntegrator<br/>(fachada)"]
+    INT -->|inyectados| GEN["Generadores por entidad<br/>vehículos · conductores · rutas · viajes · entregas · mantenimiento"]
+    INT -->|IDatabaseManager| PG[(PostgreSQL)]
+    SQL["db/statements.py"] -.-> INT
+    PG --> VW["8 vistas analíticas"] --> DASH([Streamlit · 5 páginas])
+    VW --> PBI([Power BI])
+    PG --> ETL["ETL → Snowflake"]
+```
+
 ## 🧭 Estructura del repositorio
 
 | Ruta | Qué contiene |
