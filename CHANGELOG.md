@@ -12,4 +12,3 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y [
 - Verificación de punta a punta: setup automático con ~535.000 registros sintéticos en PostgreSQL 16, las 8 vistas creadas y las 5 páginas del dashboard abren sin excepciones.
 - Instrucciones de setup sin rutas personales.
 - README con insignias de CI y versión.
-
