@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/dodysalim/FleetLogix-Master/actions"><img src="https://github.com/dodysalim/FleetLogix-Master/actions/workflows/local-tests.yml/badge.svg" alt="CI"></a> <img src="https://img.shields.io/badge/versión-1.1.0-8F7BFF?style=flat-square" alt="Versión 1.1.0"> <img src="https://img.shields.io/badge/licencia-MIT-30405B?style=flat-square" alt="Licencia MIT">
+<a href="https://github.com/dodysalim/FleetLogix-Master/actions"><img src="https://github.com/dodysalim/FleetLogix-Master/actions/workflows/local-tests.yml/badge.svg" alt="CI"></a> <img src="https://img.shields.io/badge/versión-2.0.0-8F7BFF?style=flat-square" alt="Versión 2.0.0"> <img src="https://img.shields.io/badge/licencia-MIT-30405B?style=flat-square" alt="Licencia MIT">
 </p>
 
 <p align="center"><a href="https://dodysalim.github.io/"><b>🌐 Portafolio</b></a> · <a href="docs/PORTFOLIO_CASE.md"><b>📄 Caso de estudio</b></a> · <a href="docs/VALIDATION.md"><b>✅ Verificación</b></a></p>
@@ -27,7 +27,7 @@
 | **🎯 Problema** | Convertir entidades operativas de logística en indicadores de servicio y rendimiento. |
 | **🛠️ Solución** | Generadores reproducibles, ETL, esquema relacional en PostgreSQL y vistas analíticas. |
 | **📈 Entregables** | Dashboard Streamlit de 5 vistas (flota, conductores, rutas, combustible) y exportación a Power BI. |
-| **🧪 Calidad** | 5 pruebas automatizadas de reproducibilidad e integridad. |
+| **🧪 Calidad** | 8 pruebas automatizadas; arquitectura SOLID con generadores y base de datos inyectables. |
 | **👤 Autor** | Dody Dueñas Remache. |
 
 ## ❓ La pregunta de negocio
@@ -72,7 +72,9 @@ Necesita PostgreSQL y las vistas SQL. El dashboard lee DB_HOST, DB_PORT, DB_NAME
 
 | Ruta | Qué contiene |
 | --- | --- |
-| [app/generators/](app/generators/) | Datos sintéticos por entidad |
+| [app/generators/](app/generators/) | Generadores por entidad (aleatoriedad aislada por instancia) |
+| [app/core/integrator.py](app/core/integrator.py) | Fachada del pipeline con base de datos y generadores inyectables |
+| [scripts/01_data_generation.py](scripts/01_data_generation.py) | Entrada de línea de comandos (`--scale`) |
 | [app/core/](app/core/) | ETL e integración |
 | [sql/](sql/) | Esquema relacional |
 | [dashboard/sql/](dashboard/sql/) | Vistas y calendario |
@@ -81,7 +83,7 @@ Necesita PostgreSQL y las vistas SQL. El dashboard lee DB_HOST, DB_PORT, DB_NAME
 
 ## ✅ Calidad y alcance
 
-Cinco pruebas aprobadas: reproducibilidad, integridad de entregas y contraseñas con caracteres reservados. Verificado de punta a punta (26-10-2026): setup automático en PostgreSQL 16 con ~535.000 registros, 8 vistas analíticas y las 5 páginas del dashboard sin errores. Sin base de datos, el dashboard informa la ausencia de PostgreSQL.
+Ocho pruebas aprobadas: reproducibilidad, reglas de negocio de rutas y conductores, integridad de entregas, orquestación del pipeline y contraseñas con caracteres reservados. Verificado de punta a punta (26-10-2026): setup automático en PostgreSQL 16 con ~535.000 registros, 8 vistas analíticas y las 5 páginas del dashboard sin errores. Sin base de datos, el dashboard informa la ausencia de PostgreSQL.
 
 Power BI contiene esquemas pendientes de exportación. AWS y otras integraciones descritas en el proyecto no se verificaron como servicios en producción. No se afirma ahorro ni throughput medido.
 

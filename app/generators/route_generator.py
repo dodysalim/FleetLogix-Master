@@ -26,27 +26,20 @@ class RouteGenerator(IDataGenerator):
         key = tuple(sorted([origin, destination]))
         return self._distances.get(key, 500)
 
+    def routes_per_pair(self, origin: str, destination: str) -> int:
+        """Regla de negocio: más rutas alternativas cuando el par incluye a Bogotá."""
+        return 3 if "Bogotá" in (origin, destination) else 2
+
     def generate(self, count: int, **kwargs) -> List[tuple]:
         routes = []
-        route_counter = 1
-        for origin in self._cities:
-            for destination in self._cities:
-                if origin != destination:
-                    route_code = f"R{str(route_counter).zfill(3)}"
-                    distance = self._get_distance(origin, destination) + self._rng.uniform(-50, 50)
-                    avg_speed = self._rng.uniform(60, 80)
-                    duration = distance / avg_speed
-                    toll_cost = int(distance / 100) * 15000
-                    
-                    routes.append((
-                        route_code,
-                        origin,
-                        destination,
-                        round(distance, 2),
-                        round(duration, 2),
-                        toll_cost
-                    ))
-                    route_counter += 1
-                    if route_counter > count: break
-            if route_counter > count: break
-        return routes[:count]
+        pairs = [(o, d) for o in self._cities for d in self._cities if o != d]
+        for origin, destination in pairs:
+            for _ in range(self.routes_per_pair(origin, destination)):
+                if len(routes) >= count:
+                    return routes
+                distance = self._get_distance(origin, destination) + self._rng.uniform(-50, 50)
+                duration = distance / self._rng.uniform(60, 80)          # 60-80 km/h
+                toll_cost = int(distance / 100) * 15000                  # 15.000 COP cada 100 km
+                routes.append((f"R{len(routes) + 1:03d}", origin, destination,
+                               round(distance, 2), round(duration, 2), toll_cost))
+        return routes

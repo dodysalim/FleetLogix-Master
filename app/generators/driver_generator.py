@@ -37,6 +37,6 @@ class DriverGenerator(IDataGenerator):
                 self._fake.date_between(start_date="-1m", end_date="+3y"),
                 phone,
                 hire_date,
-                "active"
+                self._rng.choice(["active"] * 19 + ["inactive"])   # 95 % activos
             ))
         return drivers
