@@ -1,0 +1,54 @@
+# ===========================================================================
+# .gitignore para dashboard/ — FleetLogix (Streamlit edition)
+# ===========================================================================
+
+# ---- Sistemas operativos ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Editores ----
+*.swp
+*.swo
+*~
+.vs/
+.vscode/
+*.suo
+*.user
+
+# ---- Secretos y credenciales ----
+.env
+.env.local
+*.secrets
+credentials.json
+*.pgpass
+
+# ---- Exportaciones temporales ----
+data_exports/*.csv
+data_exports/*.xlsx
+data_exports/*.parquet
+!data_exports/.gitkeep
+!data_exports/README.md
+!data_exports/export_to_csv.py
+
+# ---- Capturas locales (solo se mantienen las oficiales) ----
+screenshots/local_*
+screenshots/draft_*
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Python ----
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ---- Legado Power BI (ignorar si llegaran a aparecer) ----
+*.pbip
+*.pbix
+*.pbit
+*.SemanticModel/
+*.Report/
+.pbi/

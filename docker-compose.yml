@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Base de Datos Corporativa - PostgreSQL 15 (Motor Transaccional Principal)
+  db_fleetlogix:
+    image: postgres:15-alpine
+    container_name: dody_postgres_db
+    environment:
+      POSTGRES_DB: fleetlogix
+      POSTGRES_USER: admin_dody
+      POSTGRES_PASSWORD: secret_password_123
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    networks:
+      - fleetlogix_net
+
+  # PostgREST - Creación automática de API REST a partir del esquema PostgreSQL
+  api_postgrest:
+    image: postgrest/postgrest
+    container_name: dody_postgrest_api
+    environment:
+      # Conecta a la BD
+      PGRST_DB_URI: postgres://admin_dody:secret_password_123@db_fleetlogix:5432/fleetlogix
+      # Exponer el esquema que tiene las vistas y funciones
+      PGRST_DB_SCHEMA: public
+      PGRST_DB_ANON_ROLE: web_anon
+      # Token JWT (en producción cambiar esto)
+      PGRST_JWT_SECRET: really_really_long_and_secure_jwt_secret
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db_fleetlogix
+    networks:
+      - fleetlogix_net
+
+  # Swagger UI para visualizar los endpoints generados por PostgREST de forma profesional
+  swagger_ui:
+    image: swaggerapi/swagger-ui
+    container_name: dody_swagger_ui
+    environment:
+      API_URL: http://localhost:3000/
+    ports:
+      - "8080:8080"
+    networks:
+      - fleetlogix_net
+
+networks:
+  fleetlogix_net:
+    driver: bridge

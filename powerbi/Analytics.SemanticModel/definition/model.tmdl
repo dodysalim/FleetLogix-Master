@@ -1,0 +1,11 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+
+ref table Resumen
+ref table Flota
+ref table Conductores
+ref table Rutas
+ref table Combustible
+ref expression DataFolder
