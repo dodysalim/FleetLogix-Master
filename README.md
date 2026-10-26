@@ -12,6 +12,10 @@
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"> <img src="https://img.shields.io/badge/SQL-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="SQL"> <img src="https://img.shields.io/badge/Snowflake-29B5E8?style=flat-square&logo=snowflake&logoColor=white" alt="Snowflake"> <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"> <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit"> <img src="https://img.shields.io/badge/Power_BI-F2C811?style=flat-square&logoColor=black" alt="Power BI">
 </p>
 
+<p align="center">
+<a href="https://github.com/dodysalim/FleetLogix-Master/actions"><img src="https://github.com/dodysalim/FleetLogix-Master/actions/workflows/local-tests.yml/badge.svg" alt="CI"></a> <img src="https://img.shields.io/badge/versión-1.1.0-8F7BFF?style=flat-square" alt="Versión 1.1.0"> <img src="https://img.shields.io/badge/licencia-MIT-30405B?style=flat-square" alt="Licencia MIT">
+</p>
+
 <p align="center"><a href="https://dodysalim.github.io/"><b>🌐 Portafolio</b></a> · <a href="docs/PORTFOLIO_CASE.md"><b>📄 Caso de estudio</b></a> · <a href="docs/VALIDATION.md"><b>✅ Verificación</b></a></p>
 
 ---
@@ -56,6 +60,8 @@ python -m streamlit run dashboard_streamlit/streamlit_app.py
 
 ## 🗂️ Datos y configuración
 
+Para montar la base completa en un paso (PostgreSQL local o Docker), ejecuta `bash dashboard/setup/setup.sh` (o `setup.ps1` en Windows); ver [guía de setup](dashboard/setup/README.md).
+
 Necesita PostgreSQL y las vistas SQL. El dashboard lee DB_HOST, DB_PORT, DB_NAME, DB_USER y DB_PASSWORD, o Streamlit Secrets. El exportador usa PG_HOST, PG_PORT, PG_DB, PG_USER y PG_PASS.
 
 ## 📊 Power BI · PC y móvil
@@ -75,7 +81,7 @@ Necesita PostgreSQL y las vistas SQL. El dashboard lee DB_HOST, DB_PORT, DB_NAME
 
 ## ✅ Calidad y alcance
 
-Cinco pruebas aprobadas: reproducibilidad, integridad de entregas y contraseñas con caracteres reservados. Arranque comprobado; informa la ausencia de PostgreSQL.
+Cinco pruebas aprobadas: reproducibilidad, integridad de entregas y contraseñas con caracteres reservados. Verificado de punta a punta (26-10-2026): setup automático en PostgreSQL 16 con ~535.000 registros, 8 vistas analíticas y las 5 páginas del dashboard sin errores. Sin base de datos, el dashboard informa la ausencia de PostgreSQL.
 
 Power BI contiene esquemas pendientes de exportación. AWS y otras integraciones descritas en el proyecto no se verificaron como servicios en producción. No se afirma ahorro ni throughput medido.
 

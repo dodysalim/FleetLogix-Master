@@ -30,14 +30,14 @@ Esta carpeta contiene los scripts que **montan toda la infraestructura** que el 
 ### Windows (PowerShell)
 
 ```powershell
-cd "C:\Users\DODY DUEÑAS\Documents\Poryecto2Henry\Proyecto2Dody"
+cd ruta\a\FleetLogix-Master
 PowerShell -ExecutionPolicy Bypass -File .\dashboard\setup\setup.ps1
 ```
 
 ### macOS / Linux / WSL
 
 ```bash
-cd /ruta/al/proyecto/Proyecto2Dody
+cd /ruta/a/FleetLogix-Master
 bash dashboard/setup/setup.sh
 ```
 

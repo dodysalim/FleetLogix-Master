@@ -238,7 +238,7 @@ CREATE VIEW v_dim_date AS
 WITH RECURSIVE date_range AS (
     SELECT DATE '2024-01-01' AS d
     UNION ALL
-    SELECT d + INTERVAL '1 day' FROM date_range WHERE d < DATE '2027-12-31'
+    SELECT (d + INTERVAL '1 day')::date FROM date_range WHERE d < DATE '2027-12-31'
 )
 SELECT
     d::date                                                             AS date,
